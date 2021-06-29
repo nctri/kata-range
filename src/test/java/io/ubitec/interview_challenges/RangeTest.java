@@ -8,8 +8,8 @@ public class RangeTest {
   @Test
   public void should_create_range() {
     Range range = Range.of(5, 50);
-    assertThat(range.lowerbound()).isEqualTo(5);
-    assertThat(range.upperbound()).isEqualTo(50);
+    assertThat(range.lowerBound()).isEqualTo(5);
+    assertThat(range.upperBound()).isEqualTo(50);
   }
 
   @Test
@@ -24,7 +24,7 @@ public class RangeTest {
 
   @Test
   public void closed_range_should_contain_both_bounds_and_all_elements_in_between() {
-    Range closedRange = Range.of(5, 50);
+    Range closedRange = Range.closed(5, 50);
 
     assertThat(closedRange.contains(Integer.MIN_VALUE)).isEqualTo( false);
     assertThat(closedRange.contains(4)).isEqualTo( false);
