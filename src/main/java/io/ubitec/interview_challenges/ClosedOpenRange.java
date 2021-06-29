@@ -1,6 +1,6 @@
 package io.ubitec.interview_challenges;
 
-public class ClosedOpenRange extends AbstractRange {
+public class ClosedOpenRange<T extends Comparable<T>> extends AbstractRange<T> {
 
 
     /**
@@ -10,16 +10,16 @@ public class ClosedOpenRange extends AbstractRange {
      * @param lowerBound
      * @param upperBound
      */
-    private ClosedOpenRange(int lowerBound, int upperBound) {
+    private ClosedOpenRange(T lowerBound, T upperBound) {
         super(lowerBound, upperBound);
     }
 
-    public static ClosedOpenRange of(int lowerBound, int upperBound) {
-        return new ClosedOpenRange(lowerBound, upperBound);
+    public static <T extends Comparable<T>> ClosedOpenRange<T> of(T lowerBound, T upperBound) {
+        return new ClosedOpenRange<T>(lowerBound, upperBound);
     }
 
     @Override
-    public boolean contains(int value) {
-        return value >= lowerBound() && value < upperBound();
+    public boolean contains(T value) {
+        return value.compareTo(lowerBound()) >= 0 && value.compareTo(upperBound()) < 0;
     }
 }

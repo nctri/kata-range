@@ -1,9 +1,9 @@
 package io.ubitec.interview_challenges;
 
-public abstract class AbstractRange implements Range {
+public abstract class AbstractRange<T extends Comparable<T>> implements Range<T> {
 
-  private final int lowerBound;
-  private final int upperBound;
+  private final T lowerBound;
+  private final T upperBound;
 
 
   /**
@@ -11,8 +11,8 @@ public abstract class AbstractRange implements Range {
    *
    * TODO: Change the constructor to meet your requirements.
    */
-  protected AbstractRange(int lowerBound, int upperBound) {
-    if (lowerBound > upperBound) {
+  protected AbstractRange(T lowerBound, T upperBound) {
+    if (lowerBound.compareTo(upperBound) > 0) {
       throw new IllegalArgumentException("lowerBound cannot be greater than upperBound!");
     }
     this.lowerBound = lowerBound;
@@ -30,19 +30,19 @@ public abstract class AbstractRange implements Range {
    * Returns {@code true} on if the given {@code value} is contained in this
    * {@code Range}.
    */
-  public abstract boolean contains(int value);
+  public abstract boolean contains(T value);
 
   /**
    * Returns the {@code lowerbound} of this {@code Range}.
    */
-  public int lowerBound() {
+  public T lowerBound() {
     return this.lowerBound;
   }
 
   /**
    * Returns the {@code upperbound} of this {@code Range}.
    */
-  public int upperBound() {
+  public T upperBound() {
     return this.upperBound;
   }
 
