@@ -17,6 +17,16 @@ public class OpenRange<T extends Comparable<T>> extends AbstractRange<T> {
     }
 
     @Override
+    public String getRightParenthesesType() {
+        return "(";
+    }
+
+    @Override
+    public String getLeftParenthesesType() {
+        return ")";
+    }
+
+    @Override
     public boolean doCompare(T value) {
         return RangeUtil.lessThan(value, upperBound())
                 && RangeUtil.greaterThan(value, lowerBound());

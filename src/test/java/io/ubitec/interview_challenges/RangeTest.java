@@ -1,6 +1,10 @@
 package io.ubitec.interview_challenges;
 
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.Month;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class RangeTest {
@@ -104,5 +108,13 @@ public class RangeTest {
     assertThat(all.contains(50)).isEqualTo(true);
     assertThat(all.contains(51)).isEqualTo(true);
   }
+
+  @Test
+  public void to_string_should_should_look_expected() {
+    Range<Integer> lessThen100 = Range.lessThan(100);
+    assert lessThen100.toString().equals("[Infinitive, 100)");
+  }
+
+  //TODO: them co che compartor truyen nhu lambda vao`
 
 }

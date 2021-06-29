@@ -62,4 +62,19 @@ public abstract class AbstractRange<T extends Comparable<T>> implements Range<T>
     return this.upperBound;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder result = new StringBuilder();
+    result.append(getLeftParenthesesType())
+            .append(lowerBound() == null ? "Infinitive" : lowerBound().toString())
+            .append(", ")
+            .append(upperBound() == null ? "Infinitive" : upperBound().toString())
+            .append(getRightParenthesesType());
+    return result.toString();
+  }
+
+  protected abstract String getRightParenthesesType();
+
+  protected abstract String getLeftParenthesesType();
+
 }

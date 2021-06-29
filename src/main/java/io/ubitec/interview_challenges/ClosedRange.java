@@ -17,6 +17,16 @@ public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
     }
 
     @Override
+    public String getRightParenthesesType() {
+        return "]";
+    }
+
+    @Override
+    public String getLeftParenthesesType() {
+        return "[";
+    }
+
+    @Override
     public boolean doCompare(T value) {
         return RangeUtil.lessThanOrEquals(value, upperBound()) && RangeUtil.greaterThanOrEquals(value, lowerBound());
     }
@@ -31,13 +41,6 @@ public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
         return RangeUtil.lessThanOrEquals(value, upperBound());
     }
 
-    public static void main(String[] args) {
-        Range<Integer> lessThan = Range.lessThan(50);
-
-        System.out.println(lessThan.contains(4));
-        System.out.println(lessThan.contains(Integer.MIN_VALUE));
-        System.out.println(lessThan.contains(51));
-    }
 
 
 }
