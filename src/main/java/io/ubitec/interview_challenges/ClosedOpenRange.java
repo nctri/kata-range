@@ -19,7 +19,18 @@ public class ClosedOpenRange<T extends Comparable<T>> extends AbstractRange<T> {
     }
 
     @Override
-    public boolean contains(T value) {
-        return value.compareTo(lowerBound()) >= 0 && value.compareTo(upperBound()) < 0;
+    public boolean doCompare(T value) {
+        return RangeUtil.greaterThanOrEquals(value, lowerBound())
+                && RangeUtil.lessThan(value, upperBound());
+    }
+
+    @Override
+    protected boolean valueGreaterThanLowerBound(T value) {
+        return RangeUtil.greaterThanOrEquals(value, lowerBound());
+    }
+
+    @Override
+    protected boolean valueLessThanUpperBound(T value) {
+        return RangeUtil.lessThan(value, upperBound());
     }
 }

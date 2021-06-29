@@ -17,8 +17,26 @@ public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
     }
 
     @Override
-    public boolean contains(T value) {
-        return value.compareTo(upperBound()) <= 0  && value.compareTo(lowerBound()) >= 0;
+    public boolean doCompare(T value) {
+        return RangeUtil.lessThanOrEquals(value, upperBound()) && RangeUtil.greaterThanOrEquals(value, lowerBound());
+    }
+
+    @Override
+    protected boolean valueGreaterThanLowerBound(T value) {
+        return RangeUtil.greaterThanOrEquals(value, lowerBound());
+    }
+
+    @Override
+    protected boolean valueLessThanUpperBound(T value) {
+        return RangeUtil.lessThanOrEquals(value, upperBound());
+    }
+
+    public static void main(String[] args) {
+        Range<Integer> lessThan = Range.lessThan(50);
+
+        System.out.println(lessThan.contains(4));
+        System.out.println(lessThan.contains(Integer.MIN_VALUE));
+        System.out.println(lessThan.contains(51));
     }
 
 

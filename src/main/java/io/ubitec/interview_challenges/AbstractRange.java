@@ -12,7 +12,7 @@ public abstract class AbstractRange<T extends Comparable<T>> implements Range<T>
    * TODO: Change the constructor to meet your requirements.
    */
   protected AbstractRange(T lowerBound, T upperBound) {
-    if (lowerBound.compareTo(upperBound) > 0) {
+    if (lowerBound != null && upperBound != null && lowerBound.compareTo(upperBound) > 0) {
       throw new IllegalArgumentException("lowerBound cannot be greater than upperBound!");
     }
     this.lowerBound = lowerBound;
@@ -30,7 +30,23 @@ public abstract class AbstractRange<T extends Comparable<T>> implements Range<T>
    * Returns {@code true} on if the given {@code value} is contained in this
    * {@code Range}.
    */
-  public abstract boolean contains(T value);
+  public boolean contains(T value) {
+    if (lowerBound == null && upperBound == null) {
+      return true;
+    } else if (lowerBound == null) {
+      return valueLessThanUpperBound(value);
+    } else  if (upperBound == null)  {
+      return  valueGreaterThanLowerBound(value);
+    } else {
+      return doCompare(value);
+    }
+  }
+
+  protected abstract boolean doCompare(T value);
+
+  protected abstract boolean valueGreaterThanLowerBound(T value);
+
+  protected abstract boolean valueLessThanUpperBound(T value);
 
   /**
    * Returns the {@code lowerbound} of this {@code Range}.
