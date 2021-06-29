@@ -1,5 +1,7 @@
 package io.ubitec.interview_challenges;
 
+import java.util.Date;
+
 public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
     /**
      * Constructor is private BY DESIGN.
@@ -41,6 +43,9 @@ public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
         return RangeUtil.lessThanOrEquals(value, upperBound());
     }
 
-
+    public static void main(String[] args) {
+        Converter<Date, String> converter = (String t) ->  new Date(Long.parseLong(t));
+        System.out.println(converter.convert("1231231232"));
+    }
 
 }

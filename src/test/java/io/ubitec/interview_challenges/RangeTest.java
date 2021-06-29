@@ -110,9 +110,16 @@ public class RangeTest {
   }
 
   @Test
-  public void to_string_should_should_look_expected() {
-    Range<Integer> lessThen100 = Range.lessThan(100);
+  public void to_string_should_look_expected() {
+    Range<String> lessThen100 = Range.lessThan("100");
     assert lessThen100.toString().equals("[Infinitive, 100)");
+  }
+
+  @Test
+  public void parse_notation_should_work_in_normal_case() {
+    String rangeString = Range.lessThan(100).toString();
+    Range<Integer> lessThan100 = Range.parse(rangeString, Integer.class);
+    assert lessThan100.toString().equals("[Infinitive, 100)");
   }
 
   //TODO: them co che compartor truyen nhu lambda vao`
